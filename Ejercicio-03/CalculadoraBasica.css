@@ -3,10 +3,12 @@ body {
     background-color: #d2b48c;
 }
 
-p {
-    font-size: 2em;
-    font-weight: bold;
+h1 {
     text-align: center;
+}
+
+span {
+    visibility: hidden;
 }
 
 form {
