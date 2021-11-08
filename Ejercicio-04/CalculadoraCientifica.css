@@ -1,0 +1,39 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+form {
+    color: black;
+    background-color: #e8e8e8;
+
+    width: 100vw;
+    height: 100vh;
+
+    display: grid;
+    grid-template-columns: repeat(5);
+    grid-template-rows: repeat(10);
+    gap: 0.3em;
+}
+
+input[type=button] {
+    font-size: 1.5em;
+
+    background-color: #f2f2f2;
+    
+    border: none;
+}
+
+input[type=button]:active {
+    box-shadow: none;
+}
+
+input[type=text] {
+    font-size: 1.5em;
+    text-align: right;
+
+    border: none;
+
+    grid-column-end: span 5;
+    grid-row-end: span 2;
+}
