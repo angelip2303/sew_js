@@ -3,7 +3,9 @@ body {
     background-color: #d2b48c;
 }
 
-h1 {
+p {
+    font-size: 2em;
+    font-weight: bold;
     text-align: center;
 }
 
