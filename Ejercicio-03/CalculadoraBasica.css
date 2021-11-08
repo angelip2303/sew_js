@@ -25,6 +25,7 @@ form {
 }
 
 input[type=button], input[type=submit] {
+    color: black;
     background-color: #dddddd;
     
     border: none;
@@ -51,13 +52,14 @@ input[value="-"],
 input[value="+"]
 {
     color: white;
-    background-color: #ff4561;
+    background-color: #B3001B;
 }
 
 input[type=text] {
     font-family: 'Courier New', Courier, monospace;
     font-size: 1.5em;
 
+    color: black;
     background-color: #bccd95;
 
     text-align: center;
