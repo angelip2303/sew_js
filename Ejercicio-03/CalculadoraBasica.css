@@ -24,7 +24,7 @@ form {
     gap: 1em;
 }
 
-input[type=button] {
+input[type=button], input[type=submit] {
     background-color: #dddddd;
     
     border: none;
@@ -35,6 +35,23 @@ input[type=button] {
 
 input[type=button]:active {
     box-shadow: none;
+}
+
+input[value="mrc"],
+input[value="m+"],
+input[value="m-"]
+{
+    color: white;
+    background-color: #6f6f6f;
+}
+
+input[value="/"],
+input[value="*"],
+input[value="-"],
+input[value="+"]
+{
+    color: white;
+    background-color: #ff4561;
 }
 
 input[type=text] {
