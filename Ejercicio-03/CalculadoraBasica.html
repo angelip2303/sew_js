@@ -10,7 +10,7 @@
 <body>
     <h2>Calculadora Básica</h2>
 
-    <form>
+    <form onsubmit="return false;">
         <!-- LABEL to watch the calculations -->
         <input type="text" id="result" title="pantalla para mostrar los resultados de los cálculos" disabled>
 
@@ -34,7 +34,7 @@
         <input type="button" value="0"   onclick="calc.digitos('0');">
         <input type="button" value="."   onclick="calc.punto();">
         <input type="button" value="C"   onclick="calc.borrar();">
-        <input type="submit" value="="   onclick="calc.igual();" onsubmit="return false;">
+        <input type="submit" value="="   onclick="calc.igual();">
     </form>
 </body>
 </html>

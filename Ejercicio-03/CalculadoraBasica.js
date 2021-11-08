@@ -100,7 +100,7 @@ class CalculadoraBasica {
 
     /** Igual: evalua los operandos y operador que hemos indicado. Y maneja las 
      *  excepciones que puedan surgir:
-     *      A) Si no hemos indicando el primer operando --> DO NOTHING
+     *      A) Si no hemos indicando el primer operando --> ERROR
      *      B) Si no hemos indicando el segundo operando --> ERROR
      *      C) Si falla la evaluación --> ERROR
      * 
@@ -112,7 +112,7 @@ class CalculadoraBasica {
      igual() {
         try{
             if (this.n1 === '')
-                return; // do nothing...
+            throw 'SYNTAX ERROR';
             if (this.n2 === '')
                 throw 'SYNTAX ERROR';
                 
