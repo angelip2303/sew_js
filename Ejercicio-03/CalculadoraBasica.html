@@ -8,33 +8,35 @@
     <script src="CalculadoraBasica.js"></script>
 </head>
 <body>
-    <h1>Calculadora Básica</h1>
+    <main>
+        <h1>Calculadora Básica</h1>
 
-    <form>
-        <!-- LABEL to watch the calculations -->
-        <input type="text" id="result" title="pantalla para mostrar los resultados de los cálculos" disabled>
-
-        <!-- Buttons to perform the calculations -->
-        <input type="button" value="mrc" onclick="calc.mrc()">
-        <input type="button" value="m-"  onclick="calc.mMenos()">
-        <input type="button" value="m+"  onclick="calc.mMas()">
-        <input type="button" value="/"   onclick="calc.division()">
-        <input type="button" value="7"   onclick="calc.digitos('7')">
-        <input type="button" value="8"   onclick="calc.digitos('8')">
-        <input type="button" value="9"   onclick="calc.digitos('9')">
-        <input type="button" value="*"   onclick="calc.multiplicacion()">
-        <input type="button" value="4"   onclick="calc.digitos('4')">
-        <input type="button" value="5"   onclick="calc.digitos('5')">
-        <input type="button" value="6"   onclick="calc.digitos('6')">
-        <input type="button" value="-"   onclick="calc.resta()">
-        <input type="button" value="1"   onclick="calc.digitos('1')">
-        <input type="button" value="2"   onclick="calc.digitos('2')">
-        <input type="button" value="3"   onclick="calc.digitos('3')">
-        <input type="button" value="+"   onclick="calc.suma()">
-        <input type="button" value="0"   onclick="calc.digitos('0')">
-        <input type="button" value="."   onclick="calc.punto()">
-        <input type="button" value="C"   onclick="calc.borrar()">
-        <input type="button" value="="   onclick="calc.igual()">
-    </form>
+        <form>
+            <!-- LABEL to watch the calculations -->
+            <input type="text" id="result" title="pantalla para mostrar los resultados de los cálculos" disabled>
+    
+            <!-- Buttons to perform the calculations -->
+            <input type="button" value="mrc" onclick="calc.mrc()">
+            <input type="button" value="m-"  onclick="calc.mMenos()">
+            <input type="button" value="m+"  onclick="calc.mMas()">
+            <input type="button" value="/"   onclick="calc.division()">
+            <input type="button" value="7"   onclick="calc.digitos('7')">
+            <input type="button" value="8"   onclick="calc.digitos('8')">
+            <input type="button" value="9"   onclick="calc.digitos('9')">
+            <input type="button" value="*"   onclick="calc.multiplicacion()">
+            <input type="button" value="4"   onclick="calc.digitos('4')">
+            <input type="button" value="5"   onclick="calc.digitos('5')">
+            <input type="button" value="6"   onclick="calc.digitos('6')">
+            <input type="button" value="-"   onclick="calc.resta()">
+            <input type="button" value="1"   onclick="calc.digitos('1')">
+            <input type="button" value="2"   onclick="calc.digitos('2')">
+            <input type="button" value="3"   onclick="calc.digitos('3')">
+            <input type="button" value="+"   onclick="calc.suma()">
+            <input type="button" value="0"   onclick="calc.digitos('0')">
+            <input type="button" value="."   onclick="calc.punto()">
+            <input type="button" value="C"   onclick="calc.borrar()">
+            <input type="button" value="="   onclick="calc.igual()">
+        </form>
+    </main>
 </body>
 </html>
