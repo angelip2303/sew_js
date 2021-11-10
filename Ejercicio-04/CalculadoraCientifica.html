@@ -5,68 +5,67 @@
     <meta name ="viewport" content ="width=device-width, initial scale=1.0" />
     <title>Ejercicio4 - CalculadoraCientifica</title>
     <link rel="stylesheet" href="CalculadoraCientifica.css">
-    <script src="CalculadoraBasica.js"></script>
+    <script type="text/javascript" src="CalculadoraCientifica.js"></script>
 </head>
 <body>
-    <form>
+    <form onsubmit="return false;">
         <!-- LABEL to watch the calculations -->
         <label for="result" hidden>Pantalla para mostrar los resultados de los cálculos</label>
         <input type="text" id="result" disabled>
 
         <!-- Units -->
-        <input type="button" value="DEG" onclick="">
-        <input type="button" value="HYP" onclick="">
-        <input type="button" value="F-E"  onclick="">
+        <input type="button" value="DEG" onclick="" />
+        <input type="button" value="F-E" onclick="" />
 
         <!-- Memory management -->
-        <input type="button" value="mc" onclick="">
-        <input type="button" value="mr" onclick="">
-        <input type="button" value="m-"  onclick="calc.mMenos()">
-        <input type="button" value="m+"  onclick="calc.mMas()">
-        <input type="button" value="mr" onclick="">
+        <input type="button" value="MC" onclick="" />
+        <input type="button" value="MR" onclick="" />
+        <input type="button" value="M-" onclick="calc.mMenos();" />
+        <input type="button" value="M+" onclick="calc.mMas();" />
+        <input type="button" value="MS" onclick="" />
 
         <!-- Buttons to perform the calculations -->
-        <input type="button" value="x^2" onclick="">
-        <input type="button" value="x^y" onclick="">
-        <input type="button" value="sin" onclick="">
-        <input type="button" value="cos" onclick="">
-        <input type="button" value="tan" onclick="">
+        <input type="button" value="2x"    onclick="calc.potencia2();" />
+        <input type="button" value="&#960" onclick="calc.digitos(Math.PI);" />
+        <input type="button" value="e"     onclick="calc.digitos(Math.E);" />
+        <input type="button" value="C"     onclick="calc.borrar();" />
+        <input type="button" value="back"  onclick="" />
 
-        <input type="button" value="&#8730"  onclick="">
-        <input type="button" value="10x"  onclick="">
-        <input type="button" value="log"   onclick="">
-        <input type="button" value="Exp"   onclick="">
-        <input type="button" value="Mod"   onclick="">
+        <input type="button" value="x^2" onclick="calc.cuadrado();" />
+        <input type="button" value="sin" onclick="calc.seno();">
+        <input type="button" value="cos" onclick="calc.coseno();">
+        <input type="button" value="tan" onclick="calc.tangente();">
+        <input type="button" value="mod" onclick="calc.modulo();" />
 
-        <input type="button" value="shift"   onclick="">
-        <input type="button" value="CE"   onclick="">
-        <input type="button" value="C"   onclick="calc.borrar()">
-        <input type="button" value="back"   onclick="">
-        <input type="button" value="&#247"   onclick="calc.dividir()">
+        <input type="button" value="&#8730" onclick="calc.raizCuadrada();" />
+        <input type="button" value="("      onclick="" />
+        <input type="button" value=")"      onclick="" />
+        <input type="button" value="n!"     onclick="calc.factorial();" />
+        <input type="button" value="&#247"  onclick="calc.dividir();" />
 
-        <input type="button" value="&#960"   onclick="">
-        <input type="button" value="7"   onclick="calc.digitos('7')">
-        <input type="button" value="8"   onclick="calc.digitos('8')">
-        <input type="button" value="9"   onclick="calc.digitos('9')">
-        <input type="button" value="&#215"   onclick="calc.multiplicacion()">
+        <input type="button" value="x^y"   onclick="calc.potencia();" />
+        <input type="button" value="7"     onclick="calc.digitos('7');" />
+        <input type="button" value="8"     onclick="calc.digitos('8');" />
+        <input type="button" value="9"     onclick="calc.digitos('9');" />
+        <input type="button" value="&#215" onclick="calc.multiplicacion();" />
 
-        <input type="button" value="n!"   onclick="">
-        <input type="button" value="4"   onclick="calc.digitos('4')">
-        <input type="button" value="5"   onclick="calc.digitos('5')">
-        <input type="button" value="6"   onclick="calc.digitos('6')">
-        <input type="button" value="&#8722"   onclick="calc.menos()">
+        <input type="button" value="10x"    onclick="calc.potencia10();" />
+        <input type="button" value="4"      onclick="calc.digitos('4');" />
+        <input type="button" value="5"      onclick="calc.digitos('5');" />
+        <input type="button" value="6"      onclick="calc.digitos('6');" />
+        <input type="button" value="&#8722" onclick="calc.menos();" />
 
-        <input type="button" value="&#177"   onclick="">
-        <input type="button" value="1"   onclick="calc.digitos('1')">
-        <input type="button" value="2"   onclick="calc.digitos('2')">
-        <input type="button" value="3"   onclick="calc.digitos('3')">
-        <input type="button" value="+"   onclick="calc.suma()">
+        <input type="button" value="log" onclick="calc.log();" />
+        <input type="button" value="1"   onclick="calc.digitos('1');" />
+        <input type="button" value="2"   onclick="calc.digitos('2');" />
+        <input type="button" value="3"   onclick="calc.digitos('3');" />
+        <input type="button" value="+"   onclick="calc.suma();" />
 
-        <input type="button" value="("   onclick="">
-        <input type="button" value=")"   onclick="">
-        <input type="button" value="0"   onclick="calc.digitos('0')">
-        <input type="button" value="."   onclick="calc.punto()">
-        <input type="button" value="="   onclick="calc.igual()">
+        <input type="button" value="ln"    onclick="calc.ln();" />
+        <input type="button" value="&#177" onclick="" />
+        <input type="button" value="0"     onclick="calc.digitos('0');" />
+        <input type="button" value="."     onclick="calc.punto();" />
+        <input type="submit" value="="     onclick="calc.igual();" />
     </form>
 </body>
 </html>

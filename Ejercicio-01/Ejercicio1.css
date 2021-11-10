@@ -1,13 +1,16 @@
-* {
+/*Especificidad: 001*/
+body {
     color: white;
     background-color: teal;
 }
 
+/*Especificidad: 001*/
 h1, h2, h3, h4 {
     font-family: monospace;
     text-align: center;
 }
 
+/*Especificidad: 001*/
 p {
     font-family: sans-serif;
 }

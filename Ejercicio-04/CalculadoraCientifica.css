@@ -1,22 +1,28 @@
+/*Especificidad: 001*/
 body {
-    padding: 0;
     margin: 0;
 }
 
+/*Especificidad: 001*/
 form {
     color: black;
     background-color: #e8e8e8;
 
-    width: 100vw;
+    padding: 0.2em;
+    gap: 0.2em;
+
+    box-sizing: border-box;
     height: 100vh;
 
     display: grid;
-    grid-template-columns: repeat(5);
-    grid-template-rows: repeat(10);
-    gap: 0.3em;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(11, 1fr);
 }
 
-input[type=button] {
+/*Especificidad: 011*/
+input[type=button],
+input[type=submit]
+{
     font-size: 1.5em;
 
     background-color: #f2f2f2;
@@ -24,13 +30,65 @@ input[type=button] {
     border: none;
 }
 
-input[type=button]:active {
-    box-shadow: none;
+/*Especificidad: 021*/
+input[type=button]:hover,
+input[type=submit]:hover
+{
+    background-color: #c2c2c2;
 }
 
+/*Especificidad: 021*/
+input[type=button]:active,
+input[type=submit]:active
+{
+    background-color: #5a5a5a;
+}
+
+/*Especificidad: 011*/
+input[value="MC"],
+input[value="MR"],
+input[value="M-"],
+input[value="M+"],
+input[value="MS"],
+input[value="DEG"],
+input[value="F-E"]
+{
+    font-size: 1em;
+
+    background-color: #e8e8e8;
+
+    padding: 0 2em;
+    justify-self: start;
+}
+
+/*Especificidad: 011*/
+input[value="F-E"]
+{
+    grid-column-end: span 4;
+}
+
+/*Especificidad: 011*/
+input[value="1"],
+input[value="2"],
+input[value="3"],
+input[value="4"],
+input[value="5"],
+input[value="6"],
+input[value="7"],
+input[value="8"],
+input[value="9"],
+input[value="0"],
+input[value="."]
+{
+    background-color: #fbfbfb;
+}
+
+/*Especificidad: 011*/
 input[type=text] {
-    font-size: 1.5em;
+    font-size: 4em;
     text-align: right;
+
+    background-color: #e8e8e8;
 
     border: none;
 

@@ -40,7 +40,7 @@ class CalculadoraBasica {
     // +------------------+
 
     // Escribimos en pantalla la operación que está ejecutándose
-    #actualizaPantalla() {
+    actualizaPantalla() {
         this.pantalla = this.n1 + this.operator + this.n2;
         this.#refresca();
     }
@@ -69,7 +69,7 @@ class CalculadoraBasica {
         else // else --> second operand
             this.n2 += caracter;
         
-        this.#actualizaPantalla();
+        this.actualizaPantalla();
     }
 
     // +--------------------+
@@ -77,25 +77,25 @@ class CalculadoraBasica {
     // +--------------------+
 
     suma() {
-        this.#operador('+');
+        this.operador('+');
     }
 
     resta() {
-        this.#operador('-');
+        this.operador('-');
     }
 
     multiplicacion() {
-        this.#operador('*');
+        this.operador('*');
     }
 
     division() {
-        this.#operador('/');
+        this.operador('/');
     }
 
     // ALGORITMO común a todos los operadores
-    #operador(operador) {
+    operador(operador) {
         this.operator = operador;
-        this.#actualizaPantalla();
+        this.actualizaPantalla();
     }
 
     /** Igual: evalua los operandos y operador que hemos indicado. Y maneja las 
@@ -136,7 +136,7 @@ class CalculadoraBasica {
     // C: Reestablece la calculadora a un estado inicial.
     borrar() {
         this.#reinicia();
-        this.#actualizaPantalla();
+        this.actualizaPantalla();
     }
 
     #reinicia() {
@@ -161,12 +161,12 @@ class CalculadoraBasica {
             this.isPressed = false; // we have pressed twice
             this.#reinicia();
             this.memoria = ''; // we clear the memory
-            this.#actualizaPantalla();
+            this.actualizaPantalla();
         }else { // if its the first time (RECALL)
             this.isPressed = true; // we have pressed once
             this.#reinicia();
             this.n1 = this.memoria;
-            this.#actualizaPantalla();
+            this.actualizaPantalla();
         }
     }
 
@@ -194,4 +194,86 @@ class CalculadoraBasica {
 
 }
 
-let calc = new CalculadoraBasica();
+class CalculadoraCientifica extends CalculadoraBasica {
+
+    constructor() {
+        super();
+    }
+
+    // +-------------------+
+    // | -*- POTENCIAS -*- |
+    // +-------------------+
+
+    cuadrado() {
+        this.#unaryOperation(x => Math.pow(x, 2));
+    }
+
+    potencia() {
+        this.operador('**');
+    }
+
+    raizCuadrada() {
+        this.#unaryOperation(x => Math.sqrt(x));
+    }
+
+    potencia2() {
+        this.#unaryOperation(x => Math.pow(2, x));
+    }
+
+    potencia10() {
+        this.#unaryOperation(x => Math.pow(10, x));
+    }
+
+    // +--------------------+
+    // | -*- LOGARITMOS -*- |
+    // +--------------------+
+
+    log() {
+        this.#unaryOperation(x => Math.log10(x));
+    }
+
+    ln() {
+        this.#unaryOperation(x => Math.log(x));
+    }
+
+    // +--------------------+
+    // | -*- OPERADORES -*- |
+    // +--------------------+
+
+    modulo() {
+        this.operador('%');
+    }
+    
+    // +-------------------+
+    // | -*- FACTORIAL -*- |
+    // +-------------------+
+
+    factorial() {
+        // TODO
+    }
+
+    // +-----------------------+
+    // | -*- TRIGONOMETRÍA -*- |
+    // +-----------------------+
+
+    seno() {
+        this.#unaryOperation(x => Math.sin(x));
+    }
+
+    coseno() {
+        this.#unaryOperation(x => Math.cos(x));
+    }
+
+    tangente() {
+        this.#unaryOperation(x => Math.tan(x));
+    }
+    
+    #unaryOperation(func) {
+        if (this.operator === '')
+            this.n1 = func(this.n1);
+        this.actualizaPantalla();
+    }    
+
+}
+
+let calc = new CalculadoraCientifica();
