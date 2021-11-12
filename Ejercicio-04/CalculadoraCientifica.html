@@ -14,22 +14,22 @@
         <input type="text" id="result" disabled>
 
         <!-- Units -->
-        <input type="button" value="DEG" onclick="" />
+        <input type="button" value="DEG" onclick="calc.cambiaUnidadAngulos();" id="angleUnit" />
         <input type="button" value="F-E" onclick="" />
 
         <!-- Memory management -->
-        <input type="button" value="MC" onclick="" />
-        <input type="button" value="MR" onclick="" />
+        <input type="button" value="MC" onclick="calc.mc();" />
+        <input type="button" value="MR" onclick="calc.mr();" />
         <input type="button" value="M-" onclick="calc.mMenos();" />
         <input type="button" value="M+" onclick="calc.mMas();" />
-        <input type="button" value="MS" onclick="" />
+        <input type="button" value="MS" onclick="calc.guardarEnMemoria();" />
 
         <!-- Buttons to perform the calculations -->
-        <input type="button" value="2x"    onclick="calc.potencia2();" />
+        <input type="button" value="SHIFT" onclick="" />
         <input type="button" value="&#960" onclick="calc.digitos(Math.PI);" />
         <input type="button" value="e"     onclick="calc.digitos(Math.E);" />
         <input type="button" value="C"     onclick="calc.borrar();" />
-        <input type="button" value="back"  onclick="" />
+        <input type="button" value="back"  onclick="calc.backspace();" />
 
         <input type="button" value="x^2" onclick="calc.cuadrado();" />
         <input type="button" value="sin" onclick="calc.seno();">
@@ -41,7 +41,7 @@
         <input type="button" value="("      onclick="" />
         <input type="button" value=")"      onclick="" />
         <input type="button" value="n!"     onclick="calc.factorial();" />
-        <input type="button" value="&#247"  onclick="calc.dividir();" />
+        <input type="button" value="&#247"  onclick="calc.division();" />
 
         <input type="button" value="x^y"   onclick="calc.potencia();" />
         <input type="button" value="7"     onclick="calc.digitos('7');" />
@@ -53,7 +53,7 @@
         <input type="button" value="4"      onclick="calc.digitos('4');" />
         <input type="button" value="5"      onclick="calc.digitos('5');" />
         <input type="button" value="6"      onclick="calc.digitos('6');" />
-        <input type="button" value="&#8722" onclick="calc.menos();" />
+        <input type="button" value="&#8722" onclick="calc.resta();" />
 
         <input type="button" value="log" onclick="calc.log();" />
         <input type="button" value="1"   onclick="calc.digitos('1');" />
@@ -62,7 +62,7 @@
         <input type="button" value="+"   onclick="calc.suma();" />
 
         <input type="button" value="ln"    onclick="calc.ln();" />
-        <input type="button" value="&#177" onclick="" />
+        <input type="button" value="&#177" onclick="calc.masMenos();" />
         <input type="button" value="0"     onclick="calc.digitos('0');" />
         <input type="button" value="."     onclick="calc.punto();" />
         <input type="submit" value="="     onclick="calc.igual();" />

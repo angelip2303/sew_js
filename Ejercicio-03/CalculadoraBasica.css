@@ -71,6 +71,7 @@ input[type=text] {
     background-color: #bccd95;
 
     text-align: center;
+    text-overflow: ellipsis;
 
     grid-column-end: span 4;
     grid-row-end: span 2;

@@ -3,9 +3,9 @@
 class CalculadoraBasica {
 
     constructor () {
+        this.operands = new Array();
+        this.operators = new Array();
         this.n1 = '';
-        this.n2 = '';
-        this.operator = '';
 
         this.pantalla = '';
 
@@ -39,15 +39,9 @@ class CalculadoraBasica {
     // | -*- PANTALLA -*- |
     // +------------------+
 
-    // Escribimos en pantalla la operación que está ejecutándose
-    actualizaPantalla() {
-        this.pantalla = this.n1 + this.operator + this.n2;
-        this.#refresca();
-    }
-
     // Refrescamos el documento para que se muestre el valor deseado
-    #refresca() {
-        document.getElementById('result').value = this.pantalla;
+    actualizaPantalla() {
+        document.getElementById('result').value = this.pantalla + this.n1;
     }
 
     // +-----------------+
@@ -64,12 +58,16 @@ class CalculadoraBasica {
 
     // ALGORITMO encargado de saber con qué operando estamos trabajando
     #caracter(caracter) {
-        if (this.operator === '') // if no operator --> first operand
-            this.n1 += caracter;
-        else // else --> second operand
-            this.n2 += caracter;
-        
+        this.n1 += caracter;
         this.actualizaPantalla();
+    }
+
+    #guardaNumero() {
+        // We add the operand the user has written to the operands array
+        //      NOTE: (an operand starts and ends when an operator is written)
+        this.operands.push(this.n1);
+        this.pantalla += this.n1;
+        this.n1 = ''; // reset the actual operand
     }
 
     // +--------------------+
@@ -94,14 +92,20 @@ class CalculadoraBasica {
 
     // ALGORITMO común a todos los operadores
     operador(operador) {
-        this.operator = operador;
+        this.#guardaNumero();
+
+        // We add the operator to the operators array
+        this.operators.push(operador);
+
+        // We update the screen
+        this.pantalla += operador;
         this.actualizaPantalla();
     }
 
     /** Igual: evalua los operandos y operador que hemos indicado. Y maneja las 
      *  excepciones que puedan surgir:
-     *      A) Si no hemos indicando el primer operando --> ERROR
-     *      B) Si no hemos indicando el segundo operando --> ERROR
+     *      A) Si no hemos indicado bien algún operando --> ERROR
+     *      B) Si no hemos indicado bien algún operador --> ERROR
      *      C) Si falla la evaluación --> ERROR
      * 
      *  Si todo sale bien...
@@ -111,22 +115,25 @@ class CalculadoraBasica {
      */
      igual() {
         try{
-            if (this.n1 === '')
-            throw 'SYNTAX ERROR';
-            if (this.n2 === '')
-                throw 'SYNTAX ERROR';
-                
-            this.pantalla = eval(Number(this.n1) + this.operator + Number(this.n2));
+            // Prepare for equality
+            this.#guardaNumero(); // equality is some kind of operator
+            this.pantalla = Number(this.operands[0]);
+
+            for (let i = 1; i < this.operands.length; i++) 
+                this.pantalla += this.operators[i-1] + Number(this.operands[i]);
+
+            this.pantalla =eval(this.pantalla);
 
             // if something went wrong...
-            if (this.pantalla === undefined)
-                throw 'SYNTAX ERROR';
+            if (this.pantalla === undefined || Number.isNaN(this.pantalla))
+                throw err;
         } catch(err) {
-            this.pantalla = err;
+            this.pantalla = 'SYNTAX ERROR';
         }
         
-        this.#refresca();
-        this.#reinicia();
+        this.reinicia();
+        this.actualizaPantalla();
+        this.pantalla = ''; // reset the screen for later operations
     }
 
     // +---------------+
@@ -135,14 +142,15 @@ class CalculadoraBasica {
 
     // C: Reestablece la calculadora a un estado inicial.
     borrar() {
-        this.#reinicia();
+        this.reinicia();
+        this.pantalla = '';
         this.actualizaPantalla();
     }
 
-    #reinicia() {
+    reinicia() {
+        this.operands = new Array();
+        this.operators = new Array();
         this.n1 = '';
-        this.operator = '';
-        this.n2 = '';
     }
 
     // +-----------------+
@@ -159,15 +167,17 @@ class CalculadoraBasica {
     mrc() {
         if (this.isPressed) { // if its the second time we press the button (CLEAR)
             this.isPressed = false; // we have pressed twice
-            this.#reinicia();
+            this.reinicia();
             this.memoria = ''; // we clear the memory
-            this.actualizaPantalla();
         }else { // if its the first time (RECALL)
             this.isPressed = true; // we have pressed once
-            this.#reinicia();
+            this.reinicia();
             this.n1 = this.memoria;
-            this.actualizaPantalla();
         }
+
+        // We update the memory
+        this.pantalla = this.n1;
+        this.actualizaPantalla();
     }
 
     // M-: Resta el valor que está guardado en memoria con el que aparece en pantalla
@@ -181,14 +191,14 @@ class CalculadoraBasica {
     }
 
     #operaEnMemoria(operador) {
-        if (this.operator === '') { // if in the screen there's ONLY ONE number
+        if (this.operators.length == 0) { // if in the screen there's ONLY ONE number
             this.isPressed = false;
-            this.memoria = eval(Number(this.memoria) + operador + Number(this.pantalla));
+            this.memoria = eval(Number(this.memoria) + operador + Number(this.n1));
+            this.actualizaPantalla();
         }else { // you cannot add stuff like 'something OPERATOR something' to memory
             this.isPressed = false;
             this.pantalla = 'SYNTAX ERROR';
-            this.#refresca();
-            this.#reinicia();
+            this.borrar();
         }
     }
 
@@ -198,7 +208,30 @@ class CalculadoraCientifica extends CalculadoraBasica {
 
     constructor() {
         super();
+
+        this.angleUnit = 'deg';
     }
+
+    // +------------------------+
+    // | -*- UNARY OPERATOR -*- |
+    // +------------------------+
+    
+    #unaryOperation(func) {
+        if (this.operators.length > 0) // we are trying to operate over more than a number
+            this.pantalla = 'SYNTAX ERROR'
+        else {
+            // We operate over the number on screen
+            this.n1 = func(Number(this.n1));
+
+            // we set the value of the screen to the value computed
+            this.pantalla = this.n1;
+        }
+
+        // Same process as in method IGUAL of basic calculator
+        this.reinicia();
+        this.actualizaPantalla();
+        this.pantalla = ''; // reset the screen for later operations
+    } 
 
     // +-------------------+
     // | -*- POTENCIAS -*- |
@@ -214,10 +247,6 @@ class CalculadoraCientifica extends CalculadoraBasica {
 
     raizCuadrada() {
         this.#unaryOperation(x => Math.sqrt(x));
-    }
-
-    potencia2() {
-        this.#unaryOperation(x => Math.pow(2, x));
     }
 
     potencia10() {
@@ -243,13 +272,22 @@ class CalculadoraCientifica extends CalculadoraBasica {
     modulo() {
         this.operador('%');
     }
+
+    masMenos() {
+        this.n1 = Number(this.n1) * Number(-1);
+        this.actualizaPantalla();
+    }
     
     // +-------------------+
     // | -*- FACTORIAL -*- |
     // +-------------------+
 
     factorial() {
-        // TODO
+        this.#unaryOperation(function factorial(x) {
+                                        if (x <= 1)
+                                            return 1;
+                                        return x * factorial(x-1);
+                                    });
     }
 
     // +-----------------------+
@@ -257,22 +295,60 @@ class CalculadoraCientifica extends CalculadoraBasica {
     // +-----------------------+
 
     seno() {
-        this.#unaryOperation(x => Math.sin(x));
+        this.#unaryOperation(x => Math.sin(this.angulo(x)));
     }
 
     coseno() {
-        this.#unaryOperation(x => Math.cos(x));
+        this.#unaryOperation(x => Math.cos(this.angulo(x)));
     }
 
     tangente() {
-        this.#unaryOperation(x => Math.tan(x));
+        this.#unaryOperation(x => Math.tan(this.angulo(x)));
     }
-    
-    #unaryOperation(func) {
-        if (this.operator === '')
-            this.n1 = func(this.n1);
+
+    // +------------------------------+
+    // | -*- MANEJO de CARACTERES -*- |
+    // +------------------------------+
+
+    // No eliminamos operadores (la calculadora de W10 tampoco lo hace)
+    backspace() {
+        this.n1 = this.n1.substr(0, this.n1.length-1);
         this.actualizaPantalla();
-    }    
+    }
+
+    // +-----------------+
+    // | -*- MEMORIA -*- |
+    // +-----------------+
+
+    // Básicamente guarda el último valor que hemos introducido
+    guardarEnMemoria() {
+        this.memoria = this.n1;
+    }
+
+    // Para estos dos operadores vamos a usar básicamete la misma lógica que existía...
+    mc() {
+        this.isPressed = true;
+        this.mrc();
+    }
+
+    mr() {
+        this.isPressed = false;
+        this.mrc();
+    }
+
+    // +------------------+
+    // | -*- UNIDADES -*- |
+    // +------------------+
+
+    cambiaUnidadAngulos() {
+        this.angleUnit = this.angleUnit === 'deg' ? 'rad' : 'deg';
+        document.getElementById('angleUnit').value = this.angleUnit.toUpperCase();
+    }
+
+    // Nota que esta conversión tiene una precisión determinada por el navegador/motor de JS
+    angulo (x) {
+        return this.angleUnit === 'deg' ? (x * (Math.PI / 180.0)) : x;
+    }
 
 }
 

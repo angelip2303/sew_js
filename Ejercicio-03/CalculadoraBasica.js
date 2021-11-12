@@ -3,9 +3,9 @@
 class CalculadoraBasica {
 
     constructor () {
+        this.operands = new Array();
+        this.operators = new Array();
         this.n1 = '';
-        this.n2 = '';
-        this.operator = '';
 
         this.pantalla = '';
 
@@ -39,15 +39,9 @@ class CalculadoraBasica {
     // | -*- PANTALLA -*- |
     // +------------------+
 
-    // Escribimos en pantalla la operación que está ejecutándose
-    #actualizaPantalla() {
-        this.pantalla = this.n1 + this.operator + this.n2;
-        this.#refresca();
-    }
-
     // Refrescamos el documento para que se muestre el valor deseado
-    #refresca() {
-        document.getElementById('result').value = this.pantalla;
+    actualizaPantalla() {
+        document.getElementById('result').value = this.pantalla + this.n1;
     }
 
     // +-----------------+
@@ -64,12 +58,16 @@ class CalculadoraBasica {
 
     // ALGORITMO encargado de saber con qué operando estamos trabajando
     #caracter(caracter) {
-        if (this.operator === '') // if no operator --> first operand
-            this.n1 += caracter;
-        else // else --> second operand
-            this.n2 += caracter;
-        
-        this.#actualizaPantalla();
+        this.n1 += caracter;
+        this.actualizaPantalla();
+    }
+
+    #guardaNumero() {
+        // We add the operand the user has written to the operands array
+        //      NOTE: (an operand starts and ends when an operator is written)
+        this.operands.push(this.n1);
+        this.pantalla += this.n1;
+        this.n1 = ''; // reset the actual operand
     }
 
     // +--------------------+
@@ -77,31 +75,37 @@ class CalculadoraBasica {
     // +--------------------+
 
     suma() {
-        this.#operador('+');
+        this.operador('+');
     }
 
     resta() {
-        this.#operador('-');
+        this.operador('-');
     }
 
     multiplicacion() {
-        this.#operador('*');
+        this.operador('*');
     }
 
     division() {
-        this.#operador('/');
+        this.operador('/');
     }
 
     // ALGORITMO común a todos los operadores
-    #operador(operador) {
-        this.operator = operador;
-        this.#actualizaPantalla();
+    operador(operador) {
+        this.#guardaNumero();
+
+        // We add the operator to the operators array
+        this.operators.push(operador);
+
+        // We update the screen
+        this.pantalla += operador;
+        this.actualizaPantalla();
     }
 
     /** Igual: evalua los operandos y operador que hemos indicado. Y maneja las 
      *  excepciones que puedan surgir:
-     *      A) Si no hemos indicando el primer operando --> ERROR
-     *      B) Si no hemos indicando el segundo operando --> ERROR
+     *      A) Si no hemos indicado bien algún operando --> ERROR
+     *      B) Si no hemos indicado bien algún operador --> ERROR
      *      C) Si falla la evaluación --> ERROR
      * 
      *  Si todo sale bien...
@@ -111,22 +115,25 @@ class CalculadoraBasica {
      */
      igual() {
         try{
-            if (this.n1 === '')
-            throw 'SYNTAX ERROR';
-            if (this.n2 === '')
-                throw 'SYNTAX ERROR';
-                
-            this.pantalla = eval(Number(this.n1) + this.operator + Number(this.n2));
+            // Prepare for equality
+            this.#guardaNumero(); // equality is some kind of operator
+            this.pantalla = Number(this.operands[0]);
+
+            for (let i = 1; i < this.operands.length; i++) 
+                this.pantalla += this.operators[i-1] + Number(this.operands[i]);
+
+            this.pantalla =eval(this.pantalla);
 
             // if something went wrong...
-            if (this.pantalla === undefined)
-                throw 'SYNTAX ERROR';
+            if (this.pantalla === undefined || Number.isNaN(this.pantalla))
+                throw err;
         } catch(err) {
-            this.pantalla = err;
+            this.pantalla = 'SYNTAX ERROR';
         }
         
-        this.#refresca();
-        this.#reinicia();
+        this.reinicia();
+        this.actualizaPantalla();
+        this.pantalla = ''; // reset the screen for later operations
     }
 
     // +---------------+
@@ -135,14 +142,15 @@ class CalculadoraBasica {
 
     // C: Reestablece la calculadora a un estado inicial.
     borrar() {
-        this.#reinicia();
-        this.#actualizaPantalla();
+        this.reinicia();
+        this.pantalla = '';
+        this.actualizaPantalla();
     }
 
-    #reinicia() {
+    reinicia() {
+        this.operands = new Array();
+        this.operators = new Array();
         this.n1 = '';
-        this.operator = '';
-        this.n2 = '';
     }
 
     // +-----------------+
@@ -159,15 +167,17 @@ class CalculadoraBasica {
     mrc() {
         if (this.isPressed) { // if its the second time we press the button (CLEAR)
             this.isPressed = false; // we have pressed twice
-            this.#reinicia();
+            this.reinicia();
             this.memoria = ''; // we clear the memory
-            this.#actualizaPantalla();
         }else { // if its the first time (RECALL)
             this.isPressed = true; // we have pressed once
-            this.#reinicia();
+            this.reinicia();
             this.n1 = this.memoria;
-            this.#actualizaPantalla();
         }
+
+        // We update the memory
+        this.pantalla = this.n1;
+        this.actualizaPantalla();
     }
 
     // M-: Resta el valor que está guardado en memoria con el que aparece en pantalla
@@ -181,14 +191,14 @@ class CalculadoraBasica {
     }
 
     #operaEnMemoria(operador) {
-        if (this.operator === '') { // if in the screen there's ONLY ONE number
+        if (this.operators.length == 0) { // if in the screen there's ONLY ONE number
             this.isPressed = false;
-            this.memoria = eval(Number(this.memoria) + operador + Number(this.pantalla));
+            this.memoria = eval(Number(this.memoria) + operador + Number(this.n1));
+            this.actualizaPantalla();
         }else { // you cannot add stuff like 'something OPERATOR something' to memory
             this.isPressed = false;
             this.pantalla = 'SYNTAX ERROR';
-            this.#refresca();
-            this.#reinicia();
+            this.borrar();
         }
     }
 
