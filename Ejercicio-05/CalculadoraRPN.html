@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="author" content="Ángel Iglesias Préstamo" />
+    <meta name="viewport" content ="width=device-width, initial scale=1.0" />
+    <title>Ejercicio5 - CalculadoraRPN</title>
+    <link rel="stylesheet" href="CalculadoraRPN.css">
+    <script src="CalculadoraRPN.js"></script>
+</head>
+
+<body>
+    <h1>Calculadora RPN</h1>
+    <form onsubmit="return false;">
+        <!-- 2 LABELS to watch the calculations -->
+        <textarea name="stack" cols="40" rows="5"></textarea>
+        <label for="result" hidden>Pantalla para mostrar los resultados de los cálculos</label>
+        <input type="text" id="result" disabled>
+
+        <!-- Buttons to perform the calculations -->
+        <input type="button" value="&Sqrt;" onclick="calc.raizCuadrada();" />
+        <input type="button" value="x^2"    onclick="calc.cuadrado();" />
+        <input type="button" value="log"    onclick="calc.logaritmo();" />
+        <input type="button" value="SHIFT"  onclick="calc.shift();" />
+
+        <input type="button" value="sin"   onclick="calc.seno();" id="sin" />
+        <input type="button" value="cos"   onclick="calc.coseno();" id="cos" />
+        <input type="button" value="tan"   onclick="calc.tangente();" id="tan" />
+        <input type="button" value="&div;" onclick="calc.division();" />
+
+        <input type="button" value="7" onclick="calc.digitos(this.value);" />
+        <input type="button" value="8" onclick="calc.digitos(this.value);" />
+        <input type="button" value="9" onclick="calc.digitos(this.value);" />
+        <input type="button" value="*" onclick="calc.multiplicacion();" />
+
+        <input type="button" value="4" onclick="calc.digitos(this.value);" />
+        <input type="button" value="5" onclick="calc.digitos(this.value);" />
+        <input type="button" value="6" onclick="calc.digitos(this.value);" />
+        <input type="button" value="-" onclick="calc.resta();" />
+
+        <input type="button" value="1" onclick="calc.digitos(this.value);" />
+        <input type="button" value="2" onclick="calc.digitos(this.value);" />
+        <input type="button" value="3" onclick="calc.digitos(this.value);" />
+        <input type="button" value="+" onclick="calc.suma();" />
+
+        <input type="button" value="C"     onclick="calc.borrar();" />
+        <input type="button" value="0"     onclick="calc.digitos(this.value);" />
+        <input type="button" value="."     onclick="calc.digitos(this.value);" />
+        <input type="submit" value="ENTER" onclick="calc.push();" />
+    </form>
+</body>
+
+</html>

@@ -4,7 +4,6 @@ class CalculadoraBasica {
 
     constructor () {
         this.operands = new Array();
-        this.operators = new Array();
         this.n1 = '';
 
         this.pantalla = '';
@@ -12,25 +11,29 @@ class CalculadoraBasica {
         this.isPressed = false;
         this.memoria = new Number('0');
 
-        // Manejamos los distintos eventos de pulsado de teclas
+        // We set the main keydown events
         document.addEventListener('keydown', (event) => {
             const key = event.key;
             
-            if (Number.isInteger(Number(key)))
-                this.digitos(key);
-            else {
-                if (key === '+')
-                    this.suma();
-                else if (key === '-')
-                    this.resta();
-                else if (key === '*')
-                    this.multiplicacion();
-                else if (key === '/')
-                    this.division();
-                else if (key.toUpperCase() === 'C')
-                    this.borrar();
-                else if (key === 'Enter')
-                    this.igual();
+            if (key !== ' ') { // we don't accept whitespaces
+                if (Number.isInteger(Number(key)))
+                    this.digitos(key);
+                else {
+                    if (key === '.')
+                        this.punto();
+                    else if (key === '+')
+                        this.suma();
+                    else if (key === '-')
+                        this.resta();
+                    else if (key === '*')
+                        this.multiplicacion();
+                    else if (key === '/')
+                        this.division();
+                    else if (key.toUpperCase() === 'C')
+                        this.borrar();
+                    else if (key === 'Enter')
+                        this.igual();
+                }
             }
         });
     }
@@ -95,7 +98,7 @@ class CalculadoraBasica {
         this.#guardaNumero();
 
         // We add the operator to the operators array
-        this.operators.push(operador);
+        this.operands.push(operador);
 
         // We update the screen
         this.pantalla += operador;
@@ -117,12 +120,16 @@ class CalculadoraBasica {
         try{
             // Prepare for equality
             this.#guardaNumero(); // equality is some kind of operator
-            this.pantalla = Number(this.operands[0]);
+            this.pantalla = ''; // we reset the screen
 
-            for (let i = 1; i < this.operands.length; i++) 
-                this.pantalla += this.operators[i-1] + Number(this.operands[i]);
+            // The idea is to check if we are working with a number or not:
+            //     1) If it is a number --> convert it to a number and operate with it as a number.
+            //     2) Else --> it is an operator so deal with it as an operator.
+            for (let element of this.operands)
+                this.pantalla += Number.isFinite(element) ? Number(element) : element;
 
-            this.pantalla =eval(this.pantalla);
+            // Operate over the screen...
+            this.pantalla = eval(this.pantalla);
 
             // if something went wrong...
             if (this.pantalla === undefined || Number.isNaN(this.pantalla))
@@ -149,7 +156,7 @@ class CalculadoraBasica {
 
     reinicia() {
         this.operands = new Array();
-        this.operators = new Array();
+        this.operands = new Array();
         this.n1 = '';
     }
 
@@ -191,7 +198,7 @@ class CalculadoraBasica {
     }
 
     #operaEnMemoria(operador) {
-        if (this.operators.length == 0) { // if in the screen there's ONLY ONE number
+        if (this.operands.length == 0) { // if in the screen there's ONLY ONE number
             this.isPressed = false;
             this.memoria = eval(Number(this.memoria) + operador + Number(this.n1));
             this.actualizaPantalla();
@@ -207,9 +214,31 @@ class CalculadoraBasica {
 class CalculadoraCientifica extends CalculadoraBasica {
 
     constructor() {
-        super();
+        super(); // we call the parent constructor
 
         this.angleUnit = 'deg';
+        this.isScientifcNotation = false;
+        this.isCircularFunction = false; // AT THE BEGINNING: we are working with usual trigonometric identities
+
+        // We add the new keydown events
+        document.addEventListener('keydown', (event) => {
+            const key = event.key;
+
+            if (key !== ' ') {  // we don't accept whitespaces
+                if (key === '(')
+                    this.operador(key);
+                else if (key === ')')
+                    this.operador(key);
+                else if (key === '%')
+                    this.modulo();
+                else if (key === '!')
+                    this.factorial();
+                else if (key === 'Backspace')
+                    this.backspace();
+                else if (key === 'Shift')
+                    this.shift();
+            }
+        });
     }
 
     // +------------------------+
@@ -217,7 +246,7 @@ class CalculadoraCientifica extends CalculadoraBasica {
     // +------------------------+
     
     #unaryOperation(func) {
-        if (this.operators.length > 0) // we are trying to operate over more than a number
+        if (this.operands.length > 0) // we are trying to operate over more than a number
             this.pantalla = 'SYNTAX ERROR'
         else {
             // We operate over the number on screen
@@ -295,15 +324,24 @@ class CalculadoraCientifica extends CalculadoraBasica {
     // +-----------------------+
 
     seno() {
-        this.#unaryOperation(x => Math.sin(this.angulo(x)));
+        if (this.isCircularFunction) // if we are working with circular functions: sinh
+            this.#unaryOperation(x => Math.sinh(this.angulo(x)));
+        else // we are working with usual trigonometric identitiess
+            this.#unaryOperation(x => Math.sin(this.angulo(x)));
     }
 
     coseno() {
-        this.#unaryOperation(x => Math.cos(this.angulo(x)));
+        if (this.isCircularFunction) // if we are working with circular functions: cosh
+            this.#unaryOperation(x => Math.cosh(this.angulo(x)));
+        else // we are working with usual trigonometric identities
+            this.#unaryOperation(x => Math.cos(this.angulo(x)));
     }
 
     tangente() {
-        this.#unaryOperation(x => Math.tan(this.angulo(x)));
+        if (this.isCircularFunction)  // if we are working with circular functions: tanh
+            this.#unaryOperation(x => Math.tanh(this.angulo(x)));
+        else // we are working with usual trigonometric identities
+            this.#unaryOperation(x => Math.tan(this.angulo(x)));
     }
 
     // +------------------------------+
@@ -337,7 +375,7 @@ class CalculadoraCientifica extends CalculadoraBasica {
     }
 
     // +------------------+
-    // | -*- UNIDADES -*- |
+    // | -*- misc. -*- |
     // +------------------+
 
     cambiaUnidadAngulos() {
@@ -348,6 +386,21 @@ class CalculadoraCientifica extends CalculadoraBasica {
     // Nota que esta conversión tiene una precisión determinada por el navegador/motor de JS
     angulo (x) {
         return this.angleUnit === 'deg' ? (x * (Math.PI / 180.0)) : x;
+    }
+
+    shift() {
+        this.isCircularFunction = !this.isCircularFunction;
+        
+        // we change one set of operators by the other
+        if (this.isCircularFunction) { // we are gonna work with circular functions
+            document.getElementById('sin').value = 'sinh';
+            document.getElementById('cos').value = 'cosh';
+            document.getElementById('tan').value = 'tanh';
+        } else { // we are working with usual trigonometric functions
+            document.getElementById('sin').value = 'sin';
+            document.getElementById('cos').value = 'cos';
+            document.getElementById('tan').value = 'tan';
+        }
     }
 
 }

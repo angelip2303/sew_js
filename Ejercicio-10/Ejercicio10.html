@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="author" content="Ángel Iglesias Préstamo" />
+    <meta name="viewport" content ="width=device-width, initial scale=1.0" />
+    <title>Ejercicio10 - PrecioDeLaEnergía</title>
+    <link rel="stylesheet" href="Ejercicio10.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="Ejercicio10.js"></script>
+</head>
+<body>
+    <h1>
+        &#128161; Calculadora del precio de la luz
+    </h1>
+
+    <p> Quiero calcular el precio de la luz del día
+        <input type="date" />
+    en 
+        <select name="lugar">
+            <option value="peninsular"> España </option>
+            <option value="ceuta"> Comunidad de Ceuta </option>
+            <option value="melilla"> Comunidad de Melilla </option>
+            <option value="baleares"> Islas Baleares </option>
+            <option value="canarias"> Islas Canarias </option>
+        </select>
+    .
+    </p>
+
+    <button onclick="luz.cargarDatos();"> Calcular </button>
+
+    <label for="result"> RESULTADO: </label>
+    <input type="text" id="result" disabled />
+</body>
+</html>

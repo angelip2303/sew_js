@@ -9,6 +9,12 @@ body {
     padding: 0;
 }
 
+header {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 0.2em;
+}
+
 /*Especificidad: 001*/
 button {
     color: #eceff4;
@@ -28,7 +34,6 @@ button:active {
     border: 0.2em solid #e5e9f0;
 }
 
-
 /*Especificidad: 001*/
 table {
     width: 100%;
@@ -37,6 +42,8 @@ table {
 
     border: 0.2em solid #e5e9f0;
     border-collapse: collapse;
+
+    margin-bottom: 1em;
 }
 
 /*Especificidad: 001*/
@@ -50,4 +57,26 @@ th, td {
 th {
     color: #5e81ac;
     background-color: #e5e9f0;
+}
+
+/*Especificidad: 001*/
+section {
+    display: flex;
+}
+
+/*Especificidad: 001*/
+img {
+    width: 50%;
+    padding: 0.5em;
+}
+
+/*Especificidad: 011*/
+input[type=text] {
+    color: #eceff4;
+    background-color: #4c566a;
+
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 0.2em solid #e5e9f0;
 }

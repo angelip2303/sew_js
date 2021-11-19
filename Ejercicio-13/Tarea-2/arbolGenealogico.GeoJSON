@@ -1,0 +1,245 @@
+{
+    "type" : "FeatureCollection",
+    "features" : [
+        {
+            "type" : "Feature",
+            "geometry" : {
+                "type" : "Point",
+                "coordinates" : [ -5.933390, 43.558690 ]
+            },
+            "properties" : {
+                "name" : "Lugar de nacimiento de Ángel Iglesias Préstamo"
+            }
+        },
+        {
+            "type" : "Feature",
+            "geometry" : {
+                "type" : "Point",
+                "coordinates" : [ -6.034620, 43.563570 ]
+            },
+            "properties" : {
+                "name" : "Lugar de nacimiento de David Iglesias Serrano"
+            }
+        },
+        {
+            "type" : "Feature",
+            "geometry" : {
+                "type" : "Point",
+                "coordinates" : [ -5.768121, 43.589404 ]
+            },
+            "properties" : {
+                "name" : "Lugar de nacimiento de María Dolores Serrano Menéndez"
+            }
+        },
+        {
+            "type" : "Feature",
+            "geometry" : {
+                "type" : "Point",
+                "coordinates" : [ -5.899220, 43.545330 ]
+            },
+            "properties" : {
+                "name" : "Lugar de nacimiento de Otilia Menéndez Viña"
+            }
+        },
+        {
+            "type" : "Feature",
+            "geometry" : {
+                "type" : "Point",
+                "coordinates" : [ -5.914280, 43.540390 ]
+            },
+            "properties" : {
+                "name" : "Lugar de fallecimiento de Otilia Menéndez Viña"
+            }
+        },
+        {
+            "type" : "Feature",
+            "geometry" : {
+                "type" : "Point",
+                "coordinates" : [ -5.766140, 43.593980 ]
+            },
+            "properties" : {
+                "name" : "Lugar de nacimiento de Marcelino Serrano Muñíz"
+            }
+        },
+        {
+            "type" : "Feature",
+            "geometry" : {
+                "type" : "Point",
+                "coordinates" : [ -5.919340, 43.560800 ]
+            },
+            "properties" : {
+                "name" : "Lugar de fallecimiento de Marcelino Serrano Muñíz"
+            }
+        },
+        {
+            "type" : "Feature",
+            "geometry" : {
+                "type" : "Point",
+                "coordinates" : [ -5.679100, 43.543260 ]
+            },
+            "properties" : {
+                "name" : "Lugar de nacimiento de David Iglesias Vallina"
+            }
+        },
+        {
+            "type" : "Feature",
+            "geometry" : {
+                "type" : "Point",
+                "coordinates" : [ -5.922630, 43.544090 ]
+            },
+            "properties" : {
+                "name" : "Lugar de fallecimiento de David Iglesias Vallina"
+            }
+        },
+        {
+            "type" : "Feature",
+            "geometry" : {
+                "type" : "Point",
+                "coordinates" : [ -5.655670, 43.526220 ]
+            },
+            "properties" : {
+                "name" : "Lugar de nacimiento de Emilio Iglesias"
+            }
+        },
+        {
+            "type" : "Feature",
+            "geometry" : {
+                "type" : "Point",
+                "coordinates" : [ -5.637300, 43.536500 ]
+            },
+            "properties" : {
+                "name" : "Lugar de fallecimiento de Emilio Iglesias"
+            }
+        },
+        {
+            "type" : "Feature",
+            "geometry" : {
+                "type" : "Point",
+                "coordinates" : [ -5.925570, 43.547980 ]
+            },
+            "properties" : {
+                "name" : "Lugar de nacimiento de María Dolores Préstamo Díaz"
+            }
+        },
+        {
+            "type" : "Feature",
+            "geometry" : {
+                "type" : "Point",
+                "coordinates" : [ -5.921770, 43.558330 ]
+            },
+            "properties" : {
+                "name" : "Lugar de nacimiento de Guadalupe Díaz Fernández"
+            }
+        },
+        {
+            "type" : "Feature",
+            "geometry" : {
+                "type" : "Point",
+                "coordinates" : [ -5.924560, 43.556810 ]
+            },
+            "properties" : {
+                "name" : "Lugar de fallecimiento de Guadalupe Díaz Fernández"
+            }
+        },
+        {
+            "type" : "Feature",
+            "geometry" : {
+                "type" : "Point",
+                "coordinates" : [ -5.930630, 43.557480 ]
+            },
+            "properties" : {
+                "name" : "Lugar de nacimiento de María Dolores Fernández"
+            }
+        },
+        {
+            "type" : "Feature",
+            "geometry" : {
+                "type" : "Point",
+                "coordinates" : [ -5.935970, 43.552870 ]
+            },
+            "properties" : {
+                "name" : "Lugar de fallecimiento de María Dolores Fernández"
+            }
+        },
+        {
+            "type" : "Feature",
+            "geometry" : {
+                "type" : "Point",
+                "coordinates" : [ -5.923270, 43.552780 ]
+            },
+            "properties" : {
+                "name" : "Lugar de nacimiento de José Díaz"
+            }
+        },
+        {
+            "type" : "Feature",
+            "geometry" : {
+                "type" : "Point",
+                "coordinates" : [ -5.929700, 43.546740 ]
+            },
+            "properties" : {
+                "name" : "Lugar de fallecimiento de José Díaz"
+            }
+        },
+        {
+            "type" : "Feature",
+            "geometry" : {
+                "type" : "Point",
+                "coordinates" : [ -5.399950, 43.395070 ]
+            },
+            "properties" : {
+                "name" : "Lugar de nacimiento de Ángel Préstamo Cabranes"
+            }
+        },
+        {
+            "type" : "Feature",
+            "geometry" : {
+                "type" : "Point",
+                "coordinates" : [ -5.926000,43.549950 ]
+            },
+            "properties" : {
+                "name" : "Lugar de fallecimiento de Ángel Préstamo Cabranes"
+            }
+        },
+        {
+            "type" : "Feature",
+            "geometry" : {
+                "type" : "Point",
+                "coordinates" : [ -5.403620,43.394480 ]
+            },
+            "properties" : {
+                "name" : "Lugar de nacimiento de Ángela Cabranes"
+            }
+        },
+        {
+            "type" : "Feature",
+            "geometry" : {
+                "type" : "Point",
+                "coordinates" : [ -5.402580,43.394150 ]
+            },
+            "properties" : {
+                "name" : "Lugar de fallecimiento de Ángela Cabranes"
+            }
+        },
+        {
+            "type" : "Feature",
+            "geometry" : {
+                "type" : "Point",
+                "coordinates" : [ -5.399950, 43.394650 ]
+            },
+            "properties" : {
+                "name" : "Lugar de nacimiento de Jesús Préstamo"
+            }
+        },
+        {
+            "type" : "Feature",
+            "geometry" : {
+                "type" : "Point",
+                "coordinates" : [ -5.399950, 43.395070 ]
+            },
+            "properties" : {
+                "name" : "Lugar de fallecimiento de Jesús Préstamo"
+            }
+        }
+    ]
+}

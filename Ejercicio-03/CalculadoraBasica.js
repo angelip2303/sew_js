@@ -4,7 +4,6 @@ class CalculadoraBasica {
 
     constructor () {
         this.operands = new Array();
-        this.operators = new Array();
         this.n1 = '';
 
         this.pantalla = '';
@@ -12,25 +11,29 @@ class CalculadoraBasica {
         this.isPressed = false;
         this.memoria = new Number('0');
 
-        // Manejamos los distintos eventos de pulsado de teclas
+        // We set the main keydown events
         document.addEventListener('keydown', (event) => {
             const key = event.key;
             
-            if (Number.isInteger(Number(key)))
-                this.digitos(key);
-            else {
-                if (key === '+')
-                    this.suma();
-                else if (key === '-')
-                    this.resta();
-                else if (key === '*')
-                    this.multiplicacion();
-                else if (key === '/')
-                    this.division();
-                else if (key.toUpperCase() === 'C')
-                    this.borrar();
-                else if (key === 'Enter')
-                    this.igual();
+            if (key !== ' ') { // we don't accept whitespaces
+                if (Number.isInteger(Number(key)))
+                    this.digitos(key);
+                else {
+                    if (key === '.')
+                        this.punto();
+                    else if (key === '+')
+                        this.suma();
+                    else if (key === '-')
+                        this.resta();
+                    else if (key === '*')
+                        this.multiplicacion();
+                    else if (key === '/')
+                        this.division();
+                    else if (key.toUpperCase() === 'C')
+                        this.borrar();
+                    else if (key === 'Enter')
+                        this.igual();
+                }
             }
         });
     }
@@ -95,7 +98,7 @@ class CalculadoraBasica {
         this.#guardaNumero();
 
         // We add the operator to the operators array
-        this.operators.push(operador);
+        this.operands.push(operador);
 
         // We update the screen
         this.pantalla += operador;
@@ -117,12 +120,16 @@ class CalculadoraBasica {
         try{
             // Prepare for equality
             this.#guardaNumero(); // equality is some kind of operator
-            this.pantalla = Number(this.operands[0]);
+            this.pantalla = ''; // we reset the screen
 
-            for (let i = 1; i < this.operands.length; i++) 
-                this.pantalla += this.operators[i-1] + Number(this.operands[i]);
+            // The idea is to check if we are working with a number or not:
+            //     1) If it is a number --> convert it to a number and operate with it as a number.
+            //     2) Else --> it is an operator so deal with it as an operator.
+            for (let element of this.operands)
+                this.pantalla += Number.isFinite(element) ? Number(element) : element;
 
-            this.pantalla =eval(this.pantalla);
+            // Operate over the screen...
+            this.pantalla = eval(this.pantalla);
 
             // if something went wrong...
             if (this.pantalla === undefined || Number.isNaN(this.pantalla))
@@ -149,7 +156,7 @@ class CalculadoraBasica {
 
     reinicia() {
         this.operands = new Array();
-        this.operators = new Array();
+        this.operands = new Array();
         this.n1 = '';
     }
 
@@ -191,7 +198,7 @@ class CalculadoraBasica {
     }
 
     #operaEnMemoria(operador) {
-        if (this.operators.length == 0) { // if in the screen there's ONLY ONE number
+        if (this.operands.length == 0) { // if in the screen there's ONLY ONE number
             this.isPressed = false;
             this.memoria = eval(Number(this.memoria) + operador + Number(this.n1));
             this.actualizaPantalla();

@@ -2,114 +2,127 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8" />
+    <meta name="author" content="Ángel Iglesias Préstamo" />
+    <meta name="viewport" content ="width=device-width, initial scale=1.0" />
     <title>Ejercicio7 - Mostrar/Ocultar</title>
     <link rel="stylesheet" href="Ejercicio7.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script type="text/javascript" src="Ejercicio7.js"></script>
+    <script src="Ejercicio7.js"></script>
 </head>
 <body>
-    <h1 id="nombre"> Alfredo Di Stéfano </h1>
-    <h2 id="titulo"> El mejor jugador de la historia del fútbol </h2>
-    <h3 id="apodo"> La Saeta Rubia </h3>
+    <header>
+        <button onclick="i.ocultarParrafos();">Ocultar párrafos</button>
+        <button onclick="i.mostrarParrafos();">Mostrar párrafos</button>
+        <button onclick="i.mostrarJugador();">Mostrar Jugador</button>
+        <button onclick="i.mostrarJugadora();">Mostrar Jugadora</button>
+        <button onclick="i.añadirElementos();">Añadir elementos</button>
+        <button onclick="i.eliminarElementos();">Eliminar elementos</button>
+        <button id="marcado" onclick="i.recorrerElementos();">Recorrer elementos</button>
+        <button onclick="i.calcularTotal();">Calcular total</button>
+    </header>
 
-    <p id="biografia"> Alfredo Stéfano Di Stéfano Laulhén. (Buenos Aires, Argentina; 4 de julio de 1926-Madrid, España; 7 de julio de 2014), más conocido como Alfredo Di Stéfano, fue un futbolista y entrenador argentino nacionalizado español. Jugador legendario de los clubes River Plate, Millonarios y Real Madrid Club de Fútbol, desde 2000 hasta su fallecimiento fue presidente de honor de este último, al que como jugador debe sus mayores éxitos y reconocimientos mundiales y del que llegó a ser su máximo goleador histórico. Es considerado como uno de los mejores jugadores de todos los tiempos. </p>
+    <main>
+        <h1 id="nombre"> Alfredo Di Stéfano </h1>
+        <h2 id="titulo"> El mejor jugador de la historia del fútbol </h2>
+        <h3 id="apodo"> La Saeta Rubia </h3>
+    
+        <p id="biografia"> Alfredo Stéfano Di Stéfano Laulhén. (Buenos Aires, Argentina; 4 de julio de 1926-Madrid, España; 7 de julio de 2014), más conocido como Alfredo Di Stéfano, fue un futbolista y entrenador argentino nacionalizado español. Jugador legendario de los clubes River Plate, Millonarios y Real Madrid Club de Fútbol, desde 2000 hasta su fallecimiento fue presidente de honor de este último, al que como jugador debe sus mayores éxitos y reconocimientos mundiales y del que llegó a ser su máximo goleador histórico. Es considerado como uno de los mejores jugadores de todos los tiempos. </p>
+    
+        <p id="reconocimientos"> Como jugador fue internacional por dos países, circunstancia permitida en la época, contabilizando seis encuentros con la selección argentina y treinta y uno con la selección española tras adoptar su nacionalidad en 1956. Pese a ello, se da la circunstancia de que nunca disputó una Copa Mundial - el torneo más prestigioso a nivel de selecciones - por diferentes motivos, lo cual no ha sido impedimento para que sea considerado uno de los mejores jugadores de la historia del fútbol y como el primer grande de este deporte. Su mayor logro con una selección fue el Campeonato Sudamericano 1947, actual Copa América. </p>
+    
+        <section> </section>
+    
+        <h2> Palmarés </h2>
+        <h3> A nivel internacional </h3>
+    
+        <table>
+            <tr>
+                <th> Título </th>
+                <th> Club </th>
+                <th> País en que lo gana </th>
+                <th> Año </th>
+            </tr>
+    
+            <tr>
+                <td> Campeonato Sudamericano </td>
+                <td> Selección de Argentina </td>
+                <td> Ecuador </td>
+                <td> 1947 </td>
+            </tr>
+    
+            <tr>
+                <td> Pequeña Copa del Mundo de clubes </td>
+                <td> Millonarios </td>
+                <td> Venezuela </td>
+                <td> 1953 </td>
+            </tr>
+            
+            <tr>
+                <td> Copa Latina </td>
+                <td> Real Madrid </td>
+                <td> Francia </td>
+                <td> 1955 </td>
+            </tr>
+    
+            <tr>
+                <td> Copa de Campeones de Europa </td>
+                <td> Real Madrid </td>
+                <td> Francia </td>
+                <td> 1955/56 </td>
+            </tr>
+    
+            <tr>
+                <td> Pequeña Copa del Mundo de clubes </td>
+                <td> Real Madrid </td>
+                <td> Venezuela </td>
+                <td> 1956 </td>
+            </tr>
+            
+            <tr>
+                <td> Copa de Campeones de Europa </td>
+                <td> Real Madrid </td>
+                <td> España </td>
+                <td> 1956/57 </td>
+            </tr>
+    
+            <tr>
+                <td> Copa Latina </td>
+                <td> Real Madrid </td>
+                <td> España </td>
+                <td> 1957 </td>
+            </tr>
+    
+            <tr>
+                <td> Copa de Campeones de Europa </td>
+                <td> Real Madrid </td>
+                <td> Bélgica </td>
+                <td> 1957/58 </td>
+            </tr>
+    
+            <tr>
+                <td> Copa de Campeones de Europa </td>
+                <td> Real Madrid </td>
+                <td> Alemania </td>
+                <td> 1958/59 </td>
+            </tr>
+    
+            <tr>
+                <td> Copa de Campeones de Europa </td>
+                <td> Real Madrid </td>
+                <td> Escocia </td>
+                <td> 1959/60 </td>
+            </tr>
+    
+            <tr>
+                <td> Copa Intercontinental </td>
+                <td> Real Madrid </td>
+                <td> Uruguay y España </td>
+                <td> 1960 </td>
+            </tr>
+        </table>
 
-    <p id="reconocimientos"> Como jugador fue internacional por dos países, circunstancia permitida en la época, contabilizando seis encuentros con la selección argentina y treinta y uno con la selección española tras adoptar su nacionalidad en 1956. Pese a ello, se da la circunstancia de que nunca disputó una Copa Mundial - el torneo más prestigioso a nivel de selecciones - por diferentes motivos, lo cual no ha sido impedimento para que sea considerado uno de los mejores jugadores de la historia del fútbol y como el primer grande de este deporte. Su mayor logro con una selección fue el Campeonato Sudamericano 1947, actual Copa América. </p>
-
-    <button onclick="i.ocultarParrafos();">Ocultar párrafos</button>
-    <button onclick="i.mostrarParrafos();">Mostrar párrafos</button>
-
-    <button onclick="i.mostrarJugador();">Mostrar Jugador</button>
-    <button onclick="i.mostrarJugadora();">Mostrar Jugadora</button>
-
-    <h2> Palmarés </h2>
-    <h3> A nivel internacional </h3>
-
-    <table>
-        <tr>
-            <th> Título </th>
-            <th> Club </th>
-            <th> País en que lo gana </th>
-            <th> Año </th>
-        </tr>
-
-        <tr>
-            <td> Campeonato Sudamericano </td>
-            <td> Selección de Argentina </td>
-            <td> Ecuador </td>
-            <td> 1947 </td>
-        </tr>
-
-        <tr>
-            <td> Pequeña Copa del Mundo de clubes </td>
-            <td> Millonarios </td>
-            <td> Venezuela </td>
-            <td> 1953 </td>
-        </tr>
-        
-        <tr>
-            <td> Copa Latina </td>
-            <td> Real Madrid </td>
-            <td> Francia </td>
-            <td> 1955 </td>
-        </tr>
-
-        <tr>
-            <td> Copa de Campeones de Europa </td>
-            <td> Real Madrid </td>
-            <td> Francia </td>
-            <td> 1955/56 </td>
-        </tr>
-
-        <tr>
-            <td> Pequeña Copa del Mundo de clubes </td>
-            <td> Real Madrid </td>
-            <td> Venezuela </td>
-            <td> 1956 </td>
-        </tr>
-        
-        <tr>
-            <td> Copa de Campeones de Europa </td>
-            <td> Real Madrid </td>
-            <td> España </td>
-            <td> 1956/57 </td>
-        </tr>
-
-        <tr>
-            <td> Copa Latina </td>
-            <td> Real Madrid </td>
-            <td> España </td>
-            <td> 1957 </td>
-        </tr>
-
-        <tr>
-            <td> Copa de Campeones de Europa </td>
-            <td> Real Madrid </td>
-            <td> Bélgica </td>
-            <td> 1957/58 </td>
-        </tr>
-
-        <tr>
-            <td> Copa de Campeones de Europa </td>
-            <td> Real Madrid </td>
-            <td> Alemania </td>
-            <td> 1958/59 </td>
-        </tr>
-
-        <tr>
-            <td> Copa de Campeones de Europa </td>
-            <td> Real Madrid </td>
-            <td> Escocia </td>
-            <td> 1959/60 </td>
-        </tr>
-
-        <tr>
-            <td> Copa Intercontinental </td>
-            <td> Real Madrid </td>
-            <td> Uruguay y España </td>
-            <td> 1960 </td>
-        </tr>
-    </table>
-
+        <label for="result">Número total de trofeos:</label>
+        <input type="text" id="result" disabled>
+    </main>
 </body>
 </html>

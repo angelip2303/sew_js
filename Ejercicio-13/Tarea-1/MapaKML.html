@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="author" content="Ángel Iglesias Préstamo" />
+    <meta name="viewport" content ="width=device-width, initial scale=1.0" />
+    <title>Ejercicio13 - Tarea1/Procesamiento KML</title>
+    <link rel="stylesheet" href="MapaKML.css">
+    <script src="MapaKML.js"></script>
+</head>
+
+<body>
+    <h1>KML - Lugares de nacimiento y defunción</h1>
+    <input type="file" id="cargarArchivo" onchange= "mapaKML.cargar(this.files)"/>
+    <main></main>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeae0K4XiQPc08oZDRb8lRZcQQNZpc0oE&libraries=places"></script>
+</body>
+
+</html>

@@ -26,6 +26,30 @@ class Interactuar {
         $("#reconocimientos").text("Rapinoe es conocida internacionalmente por su elaborador y técnico estilo de juego, y por su preciso pase a Abby Wambach en el minuto 122 de los cuartos de final de la Copa Mundial Femenina de Fútbol de 2011 contra Brasil, que acabó en gol e igualó el marcador, posteriormente Estados Unidos ganaría el partido en la tanda de penales. Durante los Juegos Olímpicos de 2012 marcó tres goles y fue la máxima asistente del equipo con cuatro asistencias consiguiendo la medalla de oro para Estados Unidos.");
     }
 
+    añadirElementos() {
+        let ans = '<img src="media/di_stefano1.jpg" />';
+        ans += '<img src="media/di_stefano2.jpg" />';
+        $("section").html(ans);
+    }
+
+    eliminarElementos() {
+        $("section").html('');
+    }
+
+    recorrerElementos() {
+        $("*", document.body).each(function () {
+            var parent = $(this).parent().get(0).tagName;
+            $(this).prepend(document.createTextNode("Padre : <" + parent + "> elemento : <" + $(this).get(0).tagName + "> valor: "));
+        });
+        $("#marcado").remove();
+    }
+
+    calcularTotal() {
+        let total = -1; // para no contar la cabecera...
+        $("tr").each(element => total++);
+        $("input[type=text]").val(total);
+    }
+
 }
 
 let i = new Interactuar();
