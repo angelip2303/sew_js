@@ -85,36 +85,36 @@ class CalculadoraRPN {
     }
 
     raizCuadrada() {
-        this.#unaryOperation(a => Math.sqrt(a));
+        this.unaryOperation(a => Math.sqrt(a));
     }
 
     cuadrado() {
-        this.#unaryOperation(a => Math.pow(a, 2));
+        this.unaryOperation(a => Math.pow(a, 2));
     }
 
     logaritmo() {
-        this.#unaryOperation(a => Math.log(a));
+        this.unaryOperation(a => Math.log(a));
     }
 
     seno() {
         if (this.isInverseFunction) // if we are working with inverse functions: arcsin
-            this.#unaryOperation(x => Math.asin(this.#angulo(x)));
+            this.unaryOperation(x => Math.asin(this.#angulo(x)));
         else // we are working with usual trigonometric identities
-            this.#unaryOperation(x => Math.sin(this.#angulo(x)));
+            this.unaryOperation(x => Math.sin(this.#angulo(x)));
     }
 
     coseno() {
         if (this.isInverseFunction) // if we are working with inverse functions: arccos
-            this.#unaryOperation(x => Math.acos(this.#angulo(x)));
+            this.unaryOperation(x => Math.acos(this.#angulo(x)));
         else // we are working with usual trigonometric identities
-            this.#unaryOperation(x => Math.cos(this.#angulo(x)));
+            this.unaryOperation(x => Math.cos(this.#angulo(x)));
     }
 
     tangente() {
         if (this.isInverseFunction)  // if we are working with inverse functions: arctan
-            this.#unaryOperation(x => Math.atan(this.#angulo(x)));
+            this.unaryOperation(x => Math.atan(this.#angulo(x)));
         else // we are working with usual trigonometric identities
-            this.#unaryOperation(x => Math.tan(this.#angulo(x)));
+            this.unaryOperation(x => Math.tan(this.#angulo(x)));
     }
 
     #binaryOperation(f) {
@@ -125,7 +125,7 @@ class CalculadoraRPN {
         this.push();
     }
 
-    #unaryOperation(f) {
+    unaryOperation(f) {
         let operand = this.pila.pop(); // extraemos un valor de la pila
         let result = f(operand);
         this.pantalla = result;
@@ -146,10 +146,10 @@ class CalculadoraRPN {
     }
 
     shift() {
-        this.isCircularFunction = !this.isCircularFunction;
+        this.isInverseFunction = !this.isInverseFunction;
         
         // we change one set of operators by the other
-        if (this.isCircularFunction) { // we are gonna work with circular functions
+        if (this.isInverseFunction) { // we are gonna work with circular functions
             document.getElementById('sin').value = 'asin';
             document.getElementById('cos').value = 'acos';
             document.getElementById('tan').value = 'atan';
