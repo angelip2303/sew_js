@@ -13,7 +13,8 @@
 <body>
     <form onsubmit="return false;">
         <!-- 2 LABELS to watch the calculations -->
-        <textarea name="stack" cols="40" rows="5" disabled></textarea>
+        <label for="stack" hidden>Pantalla para mostrar los resultados en la pila</label>
+        <textarea id="stack" cols="40" rows="5" disabled></textarea>
         <label for="result" hidden>Pantalla para mostrar los resultados de los cálculos</label>
         <input type="text" id="result" disabled>
 
