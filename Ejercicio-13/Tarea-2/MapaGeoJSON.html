@@ -12,7 +12,8 @@
 
 <body>
     <h1>GeoJSON - Lugares de nacimiento y defunción</h1>
-    <input type="file" onchange= "mapaGeoJSON.initMap(this.files)"/>
+    <label for="archivo" hidden> Selector de archivo </label>
+    <input type="file" onchange= "mapaGeoJSON.initMap(this.files)" id="archivo" />
     <main></main>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeae0K4XiQPc08oZDRb8lRZcQQNZpc0oE&libraries=places"></script>
 </body>
