@@ -38,7 +38,7 @@ class DatosMeteorologicos {
             method: 'GET',
             success: function(datos) {
                 var datosMeteorologicos = "<h2>" + datos.name + " - " + datos.sys.country + "</h2>";
-                    datosMeteorologicos += '<img src="https://openweathermap.org/img/w/' + datos.weather[0].icon +'.png" />';
+                    datosMeteorologicos += '<img src="https://openweathermap.org/img/w/' + datos.weather[0].icon +'.png" alt="icono que representa el tiempo" />';
                     datosMeteorologicos += "<ul><li>Temperatura: " + datos.main.temp + "ºC</li>";
                     datosMeteorologicos += "<li>Temperatura máxima: " + datos.main.temp_max + "ºC</li>";
                     datosMeteorologicos += "<li>Temperatura mí­nima: " + datos.main.temp_min + "ºC</li>";

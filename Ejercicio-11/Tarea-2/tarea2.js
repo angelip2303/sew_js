@@ -18,7 +18,7 @@ class GeoLocalizacion {
 
     buscaUsuario(){
         let elemento = document.createElement("section"); 
-        elemento.innerHTML = "";
+        elemento.innerHTML = "<h2> Tu ubicación actual </h2>";
         $("button").before(elemento);
 
         let datos = '';

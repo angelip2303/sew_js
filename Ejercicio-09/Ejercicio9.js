@@ -59,7 +59,7 @@ class DatosMeteorologicos {
                 var fechaMedidaLocal      = (new Date(horaMedidaMiliSeg1970)).toLocaleDateString("es-ES");
 
                 var datosMeteorologicos = "<h2>" + ciudad + " - " + pais + "</h2>";
-                    datosMeteorologicos += '<img src="https://openweathermap.org/img/w/' + $('weather',datos).attr("icon") +'.png" />';
+                    datosMeteorologicos += '<img src="https://openweathermap.org/img/w/' + $('weather',datos).attr("icon") +'.png" alt="icono que representa el tiempo" />';
                     datosMeteorologicos += "<ul><li>Temperatura: " + temperatura + "ºC</li>";
                     datosMeteorologicos += "<li>Temperatura máxima: " + temperaturaMin + "ºC</li>";
                     datosMeteorologicos += "<li>Temperatura mí­nima: " + temperaturaMax + "ºC</li>";

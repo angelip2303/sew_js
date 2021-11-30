@@ -18,20 +18,20 @@ class GeoLocalizacion {
 
     creaMapa(){
         let elemento = document.createElement("section"); 
-        elemento.innerHTML = "";
+        elemento.innerHTML = "<h2> Tu ubicación actual en el mapa </h2>";
         $("button").before(elemento);
 
         let apiKey = "&key=AIzaSyCeae0K4XiQPc08oZDRb8lRZcQQNZpc0oE";
         let url = "https://maps.googleapis.com/maps/api/staticmap?";
-        let center = `center= ${this.latitud}, ${this.longitud}`;
+        let center = `center=${this.latitud},${this.longitud}`;
         let zoom ="&zoom=15";
         let size= "&size=800x600";
-        let marcador = `&markers=color:blue%7Clabel:A%7C${this.latitud}, ${this.longitud}`;
+        let marcador = `&markers=color:blue%7Clabel:A%7C${this.latitud},${this.longitud}`;
         let sensor = "&sensor=false";
 
         this.imagenMapa = url + center + zoom + size + marcador + sensor + apiKey;
 
-        elemento.innerHTML += `<img src="${this.imagenMapa}"/>`;
+        elemento.innerHTML += `<img src="${this.imagenMapa}" alt="mapa con la posición actual"/>`;
     }
 
     error(error){

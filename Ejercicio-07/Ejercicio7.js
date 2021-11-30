@@ -33,7 +33,7 @@ class Interactuar {
     }
 
     eliminarElementos() {
-        $("section").html('');
+        $("section").html('<h2> Aquí van imágenes que se generan pulsando un botón </h2>');
     }
 
     recorrerElementos() {
