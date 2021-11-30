@@ -141,11 +141,13 @@ class GestorContraseñas {
     // Limpiamos la tabla
     #limpiaTabla() {
         $('table').html(`
+        <thead>
             <tr>
                 <th> Nombre de la cuenta </th>
                 <th> Correo electrónico </th>
                 <th> Contraseña </th>
-            </tr>`
+            </tr>
+        </thead>`
         );
     }
 
