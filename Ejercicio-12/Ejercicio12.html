@@ -13,11 +13,15 @@
 </head>
 
 <body>
-        <h1>HTML5 File</h1>
+        <main>
+            <h1>HTML5 File</h1>
+            <section> 
+                <h2> Aqui va el contenido del fichero </h2> 
+            </section>
+        </main>
+        
         <label for="file" hidden> Selector de archivo </label>
         <input type="file" onchange="fileLoader.cargar(this.files);" id="file" />
-        <p> Debes seleccionar un archivo... </p>
-        <section> <h2> Aqui va el contenido del fichero </h2> </section>
 </body>
 
 </html>

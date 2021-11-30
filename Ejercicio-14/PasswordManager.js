@@ -15,8 +15,6 @@ class GestorContraseñas {
 
             transaction.onerror = error => console.log('Error', error);
         });
-
-        this.tablaEstaLimpia = true;
     }
 
     /**
@@ -85,19 +83,6 @@ class GestorContraseñas {
      * @param {*} data --> que queremos sea insertado en la tabla.
      */
     #añadirContraseñaALaTabla(data) {
-        if (this.tablaEstaLimpia) {
-            $('table').append(
-                `<tr>
-                    <th> Nombre de la cuenta </th>
-                    <th> Correo electrónico </th>
-                    <th> Contraseña </th>
-                </tr>`
-            );
-
-            this.tablaEstaLimpia = false;
-        }
-
-
         // Procedimiento estándar para añadir a la tabla
         $('table').append(
             `<tr>
