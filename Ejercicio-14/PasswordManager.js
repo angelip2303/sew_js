@@ -83,6 +83,20 @@ class GestorContraseñas {
      * @param {*} data --> que queremos sea insertado en la tabla.
      */
     #añadirContraseñaALaTabla(data) {
+        if (!this.isTableCreated) {
+            $('form').before(`
+            <table>
+                <tr>
+                    <th> Nombre de la cuenta </th>
+                    <th> Correo electrónico </th>
+                    <th> Contraseña </th>
+                </tr>
+            </table>`
+            );
+
+            this.isTableCreated = true;
+        }
+
         // Procedimiento estándar para añadir a la tabla
         $('table').append(
             `<tr>
@@ -141,15 +155,8 @@ class GestorContraseñas {
 
     // Limpiamos la tabla
     #limpiaTabla() {
-        $('table').html(`
-        <thead>
-            <tr>
-                <th> Nombre de la cuenta </th>
-                <th> Correo electrónico </th>
-                <th> Contraseña </th>
-            </tr>
-        </thead>`
-        );
+        $('table').remove();
+        this.isTableCreated = false;
     }
 
     // Limpiamos la base de datos
