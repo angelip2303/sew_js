@@ -23,7 +23,7 @@ form {
 
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(11, 1fr);
+    grid-template-rows: repeat(9, 1fr);
 }
 
 /*Especificidad: 011*/
@@ -94,6 +94,8 @@ input[type=text] {
 /*Especificidad: 001*/
 textarea {
     font-size: 1em;
+
+    grid-row-end: span 2;
 
     resize: none;
 }
