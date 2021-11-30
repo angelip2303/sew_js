@@ -6,7 +6,7 @@ body {
 
 /*Especificidad: 001*/
 h1 {
-    text-align: center;
+    display:none
 }
 
 /*Especificidad: 001*/

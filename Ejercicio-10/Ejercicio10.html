@@ -15,9 +15,11 @@
     </h1>
 
     <p> Quiero calcular el precio de la luz del día
-        <input type="date" />
+        <label for="result" hidden> Selector de fecha </label>
+        <input type="date" id="fecha"/>
     en 
-        <select name="lugar">
+        <label for="lugar" hidden> Selector del lugar de España sobre el que hacer la búsqueda </label>
+        <select name="lugar" id="lugar">
             <option value="peninsular"> España </option>
             <option value="ceuta"> Comunidad de Ceuta </option>
             <option value="melilla"> Comunidad de Melilla </option>
