@@ -21,7 +21,7 @@ class GeoLocalizacion {
         elemento.innerHTML = "<h2> Tu ubicación actual en el mapa </h2>";
         $("button").before(elemento);
 
-        let apiKey = "&key=AIzaSyCeae0K4XiQPc08oZDRb8lRZcQQNZpc0oE";
+        let apiKey = "&key=";
         let url = "https://maps.googleapis.com/maps/api/staticmap?";
         let center = `center=${this.latitud},${this.longitud}`;
         let zoom ="&zoom=15";
