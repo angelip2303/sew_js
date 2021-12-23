@@ -5,7 +5,7 @@ class DatosMeteorologicos {
     constructor() {
         this.lugares = ['Avilés', 'Candás', 'Gijón', 'Luanco', 'Cabranes'];
 
-        this.apikey = "9830c7fad6131a4e74cf3595291bf50a";
+        this.apikey = "";
         this.codigoPais = "ES";
         this.unidades = "&units=metric";
         this.idioma = "&lang=es";
@@ -62,7 +62,7 @@ class DatosMeteorologicos {
                     datosMeteorologicos += '<img src="https://openweathermap.org/img/w/' + $('weather',datos).attr("icon") +'.png" alt="icono que representa el tiempo" />';
                     datosMeteorologicos += "<ul><li>Temperatura: " + temperatura + "ºC</li>";
                     datosMeteorologicos += "<li>Temperatura máxima: " + temperaturaMin + "ºC</li>";
-                    datosMeteorologicos += "<li>Temperatura mí­nima: " + temperaturaMax + "ºC</li>";
+                    datosMeteorologicos += "<li>Temperatura mínima: " + temperaturaMax + "ºC</li>";
                     datosMeteorologicos += "<li>Presión: " + presion + " milibares</li>";
                     datosMeteorologicos += "<li>Humedad: " + humedad + " %</li>";
                     datosMeteorologicos += "<li>Amanece a las: " + (new Date(amanecerMiliSeg1970)).toLocaleTimeString("es-ES") + "</li>";
