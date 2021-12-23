@@ -6,13 +6,13 @@ class MapaDinamicoGoogle {
         if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(function(pos) {
 				var posActual = new google.maps.LatLng(pos.coords.latitude, 
-														pos.coords.longitude);
+								       pos.coords.longitude);
 
 				// Creamos el mapa con la configuración establecida anteriormente
 				let mapa = new google.maps.Map(document.querySelector("main"), 
-															{zoom: 14, 
-															 center:posActual,
-															 mapTypeId: google.maps.MapTypeId.SATELLITE});
+							{zoom: 14, 
+							 center:posActual,
+							 mapTypeId: google.maps.MapTypeId.SATELLITE});
 		
 				// Creamos el info window
 				let infoWindow = new google.maps.InfoWindow();
