@@ -6,14 +6,14 @@ class MapaDinamicoGoogle {
         let santigoBernabeu = {lat: 40.45311546182805, lng: -3.6883921769567656};
         let mapa = new google.maps.Map(document.querySelector("main"), 
                                                 	{zoom: 8, 
-													 center: santigoBernabeu});
+							 center: santigoBernabeu});
         
         let infoWindow = new google.maps.InfoWindow;
         if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(function(position) {
 				var pos = {
-						lat: position.coords.latitude,
-						lng: position.coords.longitude
+					lat: position.coords.latitude,
+					lng: position.coords.longitude
 				};
 
 				infoWindow.setPosition(pos);
